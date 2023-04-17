@@ -26,6 +26,7 @@
                         <th>Nom</th>
                         <th>Email</th>
                         <th>UserName</th>
+                        <th>Abonnement</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -40,7 +41,7 @@
                         </td>
                         <td>
                             <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" class="btn btn-success"
-                               th:href="@{/admin/editPatient(id=${c.id},keyword=${keyword},page=${currentPage})}">Edit</a>
+                               th:href="@{/admin/editClient(id=${c.id},keyword=${keyword},page=${currentPage})}">Edit</a>
                         </td>
                     </tr>
                     </tbody>

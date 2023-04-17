@@ -27,7 +27,7 @@ public class BootstrapDataServiceImpl implements BootstrapDataService {
                 .forEach(name -> {
                     Client client = new Client();
                     client.setNom(name);
-                    client.setEmail("email1@gmail.com");
+                    client.setEmail(name + "@gmail.com");
                     client.setUsername("User1");
                     abonnementService.saveClient(client);
                 });

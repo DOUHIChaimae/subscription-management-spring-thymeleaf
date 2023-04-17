@@ -59,7 +59,6 @@ public class ClientController {
     }
 
     @PostMapping("/admin/save")
-   // @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String savePatient(Model model, @Valid Client client, BindingResult bindingResult,
                               @RequestParam(defaultValue = "0") int page,
                               @RequestParam(defaultValue = "") String keyword) {
@@ -69,7 +68,6 @@ public class ClientController {
     }
 
     @GetMapping("/admin/editClient")
-   // @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String editPatient(Model model, Long id, String keyword, int page) {
         Client client = clientRepository.findById(id).orElse(null);
         if (client == null) {

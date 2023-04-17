@@ -19,14 +19,12 @@ public class AbonnementServiceImpl implements IAbonnementService {
     public AbonnementServiceImpl(ClientRepository clientRepository, AbonnementRepository abonnementRepository) {
         this.clientRepository = clientRepository;
         this.abonnementRepository = abonnementRepository;
-
     }
 
     @Override
     public Client saveClient(Client client) {
         return clientRepository.save(client);
     }
-
 
     @Override
     public Abonnement saveAbonnement(Abonnement abonnement) {
