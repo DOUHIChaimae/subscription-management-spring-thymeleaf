@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import ma.enset.gestionabonnement.entities.Abonnement;
 import ma.enset.gestionabonnement.entities.Client;
 import ma.enset.gestionabonnement.repositories.ClientRepository;
-import ma.enset.gestionabonnement.services.ClientService;
-import ma.enset.gestionabonnement.services.IAbonnementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,7 +20,6 @@ import java.util.List;
 public class ClientController {
     @Autowired
     private ClientRepository clientRepository;
-
 
     @GetMapping(path = "/user/index")
     public String clients(Model model,

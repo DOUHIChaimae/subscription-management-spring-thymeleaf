@@ -20,12 +20,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="abonnement : ${}">
-<!--            <td th:text="${abonnement.id}"></td>-->
-<!--            <td th:text="${abonnement.dateAbonnement}"></td>-->
-<!--            <td th:text="${abonnement.type}"></td>-->
-<!--            <td th:text="${abonnement.solde}"></td>-->
-<!--            <td th:text="${abonnement.montant}"></td>-->
+        <tr th:each="abonnement : ${abonnements}">
+            <td th:text="${abonnement.id}"></td>
+            <td th:text="${abonnement.dateAbonnement}"></td>
+            <td th:text="${abonnement.type}"></td>
+            <td th:text="${abonnement.solde}"></td>
+            <td th:text="${abonnement.montant}"></td>
         </tr>
         </tbody>
     </table>
