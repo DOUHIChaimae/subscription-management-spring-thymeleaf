@@ -2,33 +2,49 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="template1">
+      layout:decorate="template2">
 <head>
     <meta charset="UTF-8">
-    <title>Abonnements</title>
+    <title>Abonnement</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css">
 </head>
 <body>
-<div layout:fragment="content1">
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Date</th>
-            <th>Type</th>
-            <th>Solde</th>
-            <th>Montant</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="abonnement : ${abonnements}">
-            <td th:text="${abonnement.id}"></td>
-            <td th:text="${abonnement.dateAbonnement}"></td>
-            <td th:text="${abonnement.type}"></td>
-            <td th:text="${abonnement.solde}"></td>
-            <td th:text="${abonnement.montant}"></td>
-        </tr>
-        </tbody>
-    </table>
+<div layout:fragment="content2">
+    <div class="p-3">
+        <div class="card">
+            <div class="card-header">Liste des abonnements</div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Solde</th>
+                        <th>Montant</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="abonnement:${abonnements}">
+                        <td th:text="${abonnement.id}"></td>
+                        <td th:text="${abonnement.dateAbonnement}"></td>
+                        <td th:text="${abonnement.type}"></td>
+                        <td th:text="${abonnement.solde}"></td>
+                        <td th:text="${abonnement.montant}"></td>
+                        <td>
+                            <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" onclick="return confirm('Are you sure!!')" class="btn btn-danger"
+                               th:href="@{/admin/deleteAbonnement(id=${abonnement.id})}">Delete</a>
+                        </td>
+                        <td>
+                            <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" class="btn btn-success"
+                               th:href="@{/admin/editAbonnement(id=${abonnement.id})}">Edit</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

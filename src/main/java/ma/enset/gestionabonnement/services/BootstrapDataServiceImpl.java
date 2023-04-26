@@ -10,6 +10,7 @@ import ma.enset.gestionabonnement.repositories.ClientRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Stream;
 
 @Service
@@ -28,20 +29,23 @@ public class BootstrapDataServiceImpl implements BootstrapDataService {
                     Client client = new Client();
                     client.setNom(name);
                     client.setEmail(name + "@gmail.com");
-                    client.setUsername("User1");
+                    client.setUsername("User2");
                     abonnementService.saveClient(client);
                 });
     }
 
     @Override
     public void initAbonnements() {
-        Client client = clientRepository.findAll().get(0);
-        Abonnement abonnement = new Abonnement();
-        abonnement.setDateAbonnement(new Date());
-        abonnement.setMontant(((int) Math.random()) * 1000);
-        abonnement.setSolde(((int) Math.random()) * 15477 + 2001);
-        abonnement.setType(Type.INTERNET);
-        abonnement.setClient(client);
-        abonnementService.saveAbonnement(abonnement);
+        List<Client> clients = clientRepository.findAll();
+        for (Client client : clients){
+            Abonnement abonnement = new Abonnement();
+            abonnement.setDateAbonnement(new Date());
+            abonnement.setMontant(((int) Math.random()) * 1000);
+            abonnement.setSolde(((int) Math.random()) * 15477 + 2001);
+            abonnement.setType(Type.TELEPHONE_FIXE);
+            abonnement.setMontant(((int)Math.random())*1023547);
+            abonnement.setClient(client);
+            abonnementService.saveAbonnement(abonnement);
+        }
     }
 }

@@ -33,11 +33,10 @@
                     <tr th:each="c:${listClients}">
                         <td th:text="${c.id}"></td>
                         <td th:text="${c.nom}"></td>
+                        <td th:text="${c.email}"></td>
                         <td th:text="${c.username}"></td>
-                        <td th:text="${c.email}"></td>
-                        <td th:text="${c.email}"></td>
                         <td>
-                            <a class="btn btn-outline-info" th:href="@{/user/abonnements/{id}(id=${c.id})}">Les abonnements</a>
+                            <a class="btn btn-outline-info" th:href="@{/user/abonnements/{clientId}(clientId=${c.id})}">Les abonnements</a>
                         </td>
                         <td>
                             <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" onclick="return confirm('Are you sure!!')" class="btn btn-danger"
