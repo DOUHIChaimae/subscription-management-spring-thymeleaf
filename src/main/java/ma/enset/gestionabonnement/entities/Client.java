@@ -15,6 +15,6 @@ public class Client {
     private String nom;
     private String email;
     private String username;
-    @OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "client",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collection<Abonnement> abonnements;
 }

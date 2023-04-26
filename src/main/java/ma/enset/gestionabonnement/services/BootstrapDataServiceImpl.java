@@ -23,7 +23,7 @@ public class BootstrapDataServiceImpl implements BootstrapDataService {
 
     @Override
     public void initClients() {
-        Stream.of("client1", "client2", "client3")
+        Stream.of("chaimae", "amina", "nour")
                 .forEach(name -> {
                     Client client = new Client();
                     client.setNom(name);
@@ -38,8 +38,8 @@ public class BootstrapDataServiceImpl implements BootstrapDataService {
         Client client = clientRepository.findAll().get(0);
         Abonnement abonnement = new Abonnement();
         abonnement.setDateAbonnement(new Date());
-        abonnement.setMontant(10);
-        abonnement.setSolde(100000);
+        abonnement.setMontant(((int) Math.random()) * 1000);
+        abonnement.setSolde(((int) Math.random()) * 15477 + 2001);
         abonnement.setType(Type.INTERNET);
         abonnement.setClient(client);
         abonnementService.saveAbonnement(abonnement);

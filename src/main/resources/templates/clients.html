@@ -35,6 +35,10 @@
                         <td th:text="${c.nom}"></td>
                         <td th:text="${c.username}"></td>
                         <td th:text="${c.email}"></td>
+                        <td th:text="${c.email}"></td>
+                        <td>
+                            <a class="btn btn-outline-info" th:href="@{/user/abonnements/{id}(id=${c.id})}">Les abonnements</a>
+                        </td>
                         <td>
                             <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" onclick="return confirm('Are you sure!!')" class="btn btn-danger"
                                th:href="@{/admin/delete(id=${c.id},keyword=${keyword},page=${currentPage})}">Delete</a>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template1">
+<head>
+    <meta charset="UTF-8">
+    <title>Abonnements</title>
+</head>
+<body>
+<div layout:fragment="content1">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Solde</th>
+            <th>Montant</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="abonnement : ${}">
+<!--            <td th:text="${abonnement.id}"></td>-->
+<!--            <td th:text="${abonnement.dateAbonnement}"></td>-->
+<!--            <td th:text="${abonnement.type}"></td>-->
+<!--            <td th:text="${abonnement.solde}"></td>-->
+<!--            <td th:text="${abonnement.montant}"></td>-->
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
