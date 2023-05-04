@@ -48,10 +48,9 @@ public class AbonnementController {
         return "formAbonnement";
     }
     @PostMapping("/admin/saveAbonnement")
-    public String saveAbonnement(Model model, @Valid Abonnement abonnement, BindingResult bindingResult) {
+    public String saveAbonnement(Model model, Abonnement abonnement, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) return "formAbonnement";
-        abonnementRepository.save(abonnement
-        );
+        abonnementRepository.save(abonnement);
         return "redirect:/user/index";
     }
 }

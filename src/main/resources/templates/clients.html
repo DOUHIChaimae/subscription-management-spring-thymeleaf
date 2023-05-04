@@ -36,17 +36,17 @@
                         <td th:text="${c.email}"></td>
                         <td th:text="${c.username}"></td>
                         <td>
-                            <a class="btn btn-outline-info" th:href="@{/user/abonnements/{clientId}(clientId=${c.id})}">Les abonnements</a>
+                            <a class="btn btn-outline-info" th:href="@{/user/abonnements/{clientId}(clientId=${c.id})}">Abonnements</a>
                         </td>
                         <td>
                             <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" onclick="return confirm('Are you sure!!')" class="btn btn-danger"
                                th:href="@{/admin/delete(id=${c.id},keyword=${keyword},page=${currentPage})}">
-                                <i class="fas fa-trash-alt"></i>Delete
+                                Delete
                             </a>
-                        </td>
-                        <td>
                             <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" class="btn btn-success"
-                               th:href="@{/admin/editClient(id=${c.id},keyword=${keyword},page=${currentPage})}">Edit</a>
+                               th:href="@{/admin/editClient(id=${c.id},keyword=${keyword},page=${currentPage})}">
+                                Edit
+                            </a>
                         </td>
                     </tr>
                     </tbody>

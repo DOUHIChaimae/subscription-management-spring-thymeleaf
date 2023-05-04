@@ -34,8 +34,6 @@
                         <td>
                             <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" onclick="return confirm('Are you sure!!')" class="btn btn-danger"
                                th:href="@{/admin/deleteAbonnement(id=${abonnement.id})}">Delete</a>
-                        </td>
-                        <td>
                             <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" class="btn btn-success"
                                th:href="@{/admin/editAbonnement(id=${abonnement.id})}">Edit</a>
                         </td>

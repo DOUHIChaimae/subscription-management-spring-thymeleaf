@@ -37,13 +37,12 @@ public class BootstrapDataServiceImpl implements BootstrapDataService {
     @Override
     public void initAbonnements() {
         List<Client> clients = clientRepository.findAll();
-        for (Client client : clients){
+        for (Client client : clients) {
             Abonnement abonnement = new Abonnement();
             abonnement.setDateAbonnement(new Date());
-            abonnement.setMontant(((int) Math.random()) * 1000);
-            abonnement.setSolde(((int) Math.random()) * 15477 + 2001);
+            abonnement.setSolde((int) (Math.random() * 1000) );
+            abonnement.setMontant((int) (Math.random() * 1000) + abonnement.getSolde());
             abonnement.setType(Type.TELEPHONE_FIXE);
-            abonnement.setMontant(((int)Math.random())*1023547);
             abonnement.setClient(client);
             abonnementService.saveAbonnement(abonnement);
         }

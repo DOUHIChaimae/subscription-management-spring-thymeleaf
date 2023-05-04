@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/rest")
-public class AbonnementRestController {
+@RequestMapping("/rest/clients")
+public class ClientRestController {
     @Autowired
     private ClientRepository clientRepository;
 
@@ -24,14 +24,14 @@ public class AbonnementRestController {
     private AbonnementRepository abonnementRepository;
 
     // Endpoint pour récupérer tous les clients
-    @GetMapping("/clients")
+    @GetMapping("")
     public List<Client> getAllClients() {
         return clientRepository.findAll();
     }
 
     // Endpoint pour récupérer un client par ID
-    @GetMapping("/clients/{id}")
-    public ResponseEntity<Client> getClientById(@PathVariable(value = "id") Long clientId)
+    @GetMapping("/{idClient}")
+    public ResponseEntity<Client> getClientById(@PathVariable(value = "idClient") Long clientId)
             throws ResourceNotFoundException {
         Client client = clientRepository.findById(clientId)
                 .orElseThrow(() -> new ResourceNotFoundException(clientId));
@@ -39,14 +39,14 @@ public class AbonnementRestController {
     }
 
     // Endpoint pour créer un client
-    @PostMapping("/clients")
+    @PostMapping("")
     public Client createClient(@Valid @RequestBody Client client) {
         return clientRepository.save(client);
     }
 
     // Endpoint pour mettre à jour un client
-    @PutMapping("/clients/{id}")
-    public ResponseEntity<Client> updateClient(@PathVariable(value = "id") Long clientId,
+    @PutMapping("/{idClient}")
+    public ResponseEntity<Client> updateClient(@PathVariable(value = "idClient") Long clientId,
                                                @Valid @RequestBody Client clientDetails) throws ResourceNotFoundException {
         Client client = clientRepository.findById(clientId)
                 .orElseThrow(() -> new ResourceNotFoundException(clientId));
@@ -60,27 +60,25 @@ public class AbonnementRestController {
     }
 
     // Endpoint pour supprimer un client
-    @DeleteMapping("/clients/{id}")
-    public Map<String, Boolean> deleteClient(@PathVariable(value = "id") Long clientId)
-            throws ResourceNotFoundException {
+    @DeleteMapping("/{idClient}")
+    public ResponseEntity<String> deleteClient(@PathVariable(value = "idClient") Long clientId) throws ResourceNotFoundException {
         Client client = clientRepository.findById(clientId)
                 .orElseThrow(() -> new ResourceNotFoundException(clientId));
 
         clientRepository.delete(client);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return ResponseEntity.ok("Client supprimé avec succès.");
     }
 
     // Endpoint pour récupérer tous les abonnements
-    @GetMapping("/abonnements")
+    @GetMapping("/{idClient}/abonnements")
     public List<Abonnement> getAllAbonnements() {
         return abonnementRepository.findAll();
     }
 
     // Endpoint pour récupérer un abonnement par ID
-    @GetMapping("/abonnements/{id}")
-    public ResponseEntity<Abonnement> getAbonnementById(@PathVariable(value = "id") String abonnementId)
+    //TODO re implemting this method
+    @GetMapping("/{idClient}/abonnements/{idAbonnement}")
+    public ResponseEntity<Abonnement> getAbonnementById(@PathVariable(value = "idAbonnement") String abonnementId)
             throws ResourceNotFoundException {
         Abonnement abonnement = abonnementRepository.findById(abonnementId)
                 .orElseThrow(() -> new ResourceNotFoundException((abonnementId)));
@@ -88,7 +86,7 @@ public class AbonnementRestController {
     }
 
     // Endpoint pour créer un abonnement pour un client donné
-    @PostMapping("/clients/{clientId}/abonnements")
+    @PostMapping("/{idClient}/abonnements/{idAbonnement}")
     public Abonnement createAbonnement(@PathVariable(value = "clientId") Long clientId,
                                        @Valid @RequestBody Abonnement abonnement) throws ResourceNotFoundException {
         return clientRepository.findById(clientId).map(client -> {
@@ -98,12 +96,11 @@ public class AbonnementRestController {
     }
 
     // Endpoint pour mettre à jour un abonnement
-    @PutMapping("/abonnements/{id}")
-    public ResponseEntity<Abonnement> updateAbonnement(@PathVariable(value = "id") String abonnementId,
+    @PutMapping("/{idClient}/abonnements/{idAbonnement}")
+    public ResponseEntity<Abonnement> updateAbonnement(@PathVariable(value = "idAbonnement") String abonnementId,
                                                        @Valid @RequestBody Abonnement abonnementDetails) throws ResourceNotFoundException {
         Abonnement abonnement = abonnementRepository.findById(abonnementId)
                 .orElseThrow(() -> new ResourceNotFoundException(abonnementId));
-
         abonnement.setDateAbonnement(abonnementDetails.getDateAbonnement());
         abonnement.setType(abonnementDetails.getType());
         abonnement.setSolde(abonnementDetails.getSolde());
@@ -114,7 +111,7 @@ public class AbonnementRestController {
     }
 
     // Endpoint pour supprimer un abonnement
-    @DeleteMapping("/abonnements/{id}")
+    @DeleteMapping("/{idClient}/abonnements/{idAbonnement}")
     public Map<String, Boolean> deleteAbonnement(@PathVariable(value = "id") String abonnementId)
             throws ResourceNotFoundException {
         Abonnement abonnement = abonnementRepository.findById(abonnementId)

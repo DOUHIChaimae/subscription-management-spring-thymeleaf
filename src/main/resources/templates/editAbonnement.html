@@ -1,48 +1,77 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="template2">
+
 <head>
     <meta charset="UTF-8">
     <title>Abonnement</title>
     <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css">
+    <style>
+
+        h4 {
+            color: #007bff;
+        }
+        label{
+            color: #0056b3;
+        }
+
+        input {
+            color: #495057;
+            background-color: #fff;
+            border-color: #ced4da;
+        }
+
+        .mt-5 {
+            margin-top: 3rem;
+        }
+    </style>
 </head>
+
 <body>
-<div layout:fragment="content2" class="container">
+<div layout:fragment="content2" class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header"><h4 class="card-title">Abonnement</h4></div>
+                <div class="card-header">
+                    <h4 class="card-title">Abonnement</h4>
+                </div>
                 <div class="card-body">
                     <form method="post" th:action="@{saveAbonnement}">
-                        <div class="mb-3"><label class="form-label">ID :</label> <label class="form-label"
-                                                                                        th:text="${abonnement.id}"></label>
-                            <input type="hidden" name="id" th:value="${abonnement.id}"></div>
-                        <div class="mb-3"><label class="form-label" for="date">Date :</label> <input id="date"
-                                                                                                     class="form-control"
-                                                                                                     type="date"
-                                                                                                     name="date"
-                                                                                                     th:value="${abonnement.dateAbonnement}">
-                            <span class="form-text text-danger" th:errors="${abonnement.dateAbonnement}"></span></div>
-                        <div class="mb-3"><label class="form-label">Type d'abonnement :</label>
-                            <div class="form-check"
-                                 th:each="type : ${T(ma.enset.gestionabonnement.entities.Type).values()}"><input
-                                    type="radio" class="form-check-input" th:id="${type}" th:name="type"
-                                    th:value="${type}"/> <label class="form-check-label" th:for="${type}"
-                                                                th:text="${type}"></label></div>
+                        <div class="mb-3">
+                            <label class="form-label">ID :</label>
+                            <label class="form-label" th:text="${abonnement.id}" style="color:gray;"></label>
+                            <input type="hidden" name="id" th:value="${abonnement.id}">
                         </div>
-                        <div class="mb-3"><label class="form-label" for="solde">Solde :</label> <input id="solde"
-                                                                                                       class="form-control"
-                                                                                                       type="text"
-                                                                                                       name="solde"
-                                                                                                       th:value="${abonnement.solde}">
-                            <span class="form-text text-danger" th:errors="${abonnement.solde}"></span></div>
-                        <div class="mb-3"><label class="form-label" for="montant">Montant :</label> <input id="montant"
-                                                                                                           class="form-control"
-                                                                                                           type="text"
-                                                                                                           name="montant"
-                                                                                                           th:value="${abonnement.montant}">
-                            <span class="form-text text-danger" th:errors="${abonnement.montant}"></span></div>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <div class="mb-3">
+                            <label class="form-label" for="date">Date :</label>
+                            <input id="date" class="form-control" type="date" name="date"
+                                   th:value="${abonnement.dateAbonnement}">
+                            <span class="form-text text-danger" th:errors="${abonnement.dateAbonnement}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Type d'abonnement :</label>
+                            <div class="form-check" th:each="type : ${T(ma.enset.gestionabonnement.entities.Type).values()}">
+                                <input type="radio" class="form-check-input" th:id="${type}" th:name="type"
+                                       th:value="${type}"
+                                       th:checked="${abonnement.type == type}"/>
+                                <label class="form-check-label" th:for="${type}" th:text="${type}" style="color:gray;"></label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="solde">Solde :</label>
+                            <input id="solde" class="form-control" type="text" name="solde"
+                                   th:value="${abonnement.solde}">
+                            <span class="form-text text-danger" th:errors="${abonnement.solde}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="montant">Montant :</label>
+                            <input id="montant" class="form-control" type="text" name="montant"
+                                   th:value="${abonnement.montant}">
+                            <span class="form-text text-danger" th:errors="${abonnement.montant}"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -50,4 +79,5 @@
     </div>
 </div>
 </body>
+
 </html>
